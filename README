@@ -5,7 +5,7 @@ http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.6.0.tar.bz2
 )
 You also need freetype, glib, icu, pcre  and Lua development files (i.e libs & headers)
 
-You can give it  atry with
+You can give it a try with
 
 g++ -fPIC -c harfbuzz_wrap.cxx -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/opt/swig-2.0.1/include -I/usr/include/lua5.1  -o harfbuzz_wrap.o
 g++ -Wall -shared -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L.   harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
