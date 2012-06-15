@@ -1,0 +1,34 @@
+Quick and dirty way to build a swig-based Lua binding for HarfBuzz on a Linux box (ubuntu).
+
+You need to install HarfBuzz from source (see
+http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.6.0.tar.bz2
+)
+You also need freetype, glib, icu, pcre  and Lua development files (i.e libs & headers)
+
+You can give it  atry with
+
+g++ -fPIC -c harfbuzz_wrap.cxx -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/opt/swig-2.0.1/include -I/usr/include/lua5.1  -o harfbuzz_wrap.o
+g++ -Wall -shared -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L.   harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
+
+
+The bash script
+build-harfbuzz.sh
+
+build all starting from harfbuzz.i .
+
+If libharfbuzz is in a not standard folder $DIR (i.e. DIR=/opt/harfbuzz/lib)
+you can try to uncomment the following two lines of build-harfbuzz.sh :
+##DIR=/opt/harfbuzz
+## g++ -Wall -shared -Wl,-rpath,$DIR/lib -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L. -L$DIR/lib  harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
+
+
+Even if this script  is ok:
+lua -e 'require("harfbuzz"); for k,v in pairs(harfbuzz) do print(k,v) end'
+
+
+definitively
+!!!!! NEED TO TEST WITH AN EXAMPLE !!!!!!
+
+
+
+
