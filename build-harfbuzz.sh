@@ -11,7 +11,7 @@ g++ -fPIC -c harfbuzz_wrap.cxx -I. -I/usr/include/freetype2 -I/usr/include/glib-
 ##
 ## 
 ## g++ -Wall -shared -Wl,-rpath,$DIR/lib -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L. -L$DIR/lib  harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
-g++ -Wall -shared -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L.   harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
+g++ -Wall -fPIC -shared -I. -I/usr/include/freetype2 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/lua5.1 -L.   harfbuzz_wrap.o -lharfbuzz    -o harfbuzz.so
 strip --strip-unneeded harfbuzz.so
 lua -e 'require("harfbuzz"); for k,v in pairs(harfbuzz) do print(k,v) end'
 
